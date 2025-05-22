@@ -41,6 +41,19 @@ Replace `[monorepo-name]` with your desired monorepository name.
 npx create-medusa-monorepo my-plugin-monorepo -s @my-scope -p my-plugin -e my-plugin-example
 ```
 
+It scaffolds the following monorepo structure:
+
+```
+/
+└── my-plugin-monorepo/
+    ├── packages/
+    │   └── my-plugin/
+    └── examples/
+        └── my-plugin-example/
+           ├── medusa/
+           └── medusa-storefront/
+```
+
 ## License
 
 Licensed under the [MIT License](LICENSE).
