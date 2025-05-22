@@ -16,17 +16,17 @@ program
   .option("-p, --plugin <name>", "Plugin name")
   .option("-e, --example <name>", "Example project name")
   .option("--directory-path <path>", "Specify the directory path to install the monorepo in.")
-  .option("--no-storefront", "Do not create example storefront")
   .option("--plugin-repo-url <url>", "URL of repository to use to setup plugin.")
   .option("--example-repo-url <url>", "URL of repository to use to setup example.")
-  .option(
-    "--verbose",
-    "Show all logs of underlying commands. Useful for debugging.",
-    false
-  )
+  .option("--no-storefront", "Do not create example storefront")
   .option(
     "--skip-example-db",
     "Skips creating the database for the example.",
+    false
+  )
+  .option(
+    "--verbose",
+    "Show all logs of underlying commands. Useful for debugging.",
     false
   )
   .parse()
@@ -35,7 +35,7 @@ const options = program.opts()
 
 async function run() {
   const scopeName = await getScopeName(
-    options.plugin,
+    options.scope,
   )
   const pluginName = await getPluginName(
     options.plugin,
