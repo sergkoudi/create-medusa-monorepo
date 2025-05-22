@@ -47,7 +47,8 @@ It scaffolds the following monorepo structure:
 /
 └── my-plugin-monorepo/
     ├── packages/
-    │   └── my-plugin/
+    │   └── @my-scope/
+    │       └── my-plugin/
     └── examples/
         └── my-plugin-example/
            ├── medusa/
