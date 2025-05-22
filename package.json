@@ -1,6 +1,6 @@
 {
   "name": "create-medusa-monorepo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CLI tool to scaffold Medusa monorepo with plugins and examples",
   "exports": "./dist/index.js",
   "type": "module",
