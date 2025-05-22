@@ -13,6 +13,8 @@
 
 ## Usage
 
+`create-medusa-monorepo` uses the official [`create-medusa-app`](https://docs.medusajs.com/resources/create-medusa-app) under the hood to scaffold Medusa projects—including the backend, storefront and plugin. This ensures your setup follows official best practices and remains fully compatible with the Medusa ecosystem by leveraging the official Medusa app generator.
+
 ```bash
 npx create-medusa-monorepo [monorepo-name] [options]
 ```
