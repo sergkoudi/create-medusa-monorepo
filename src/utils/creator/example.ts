@@ -4,7 +4,7 @@ import { execSync } from "child_process"
 import path from "path"
 import { readFileSync, writeFileSync } from "fs"
 import logMessage from "../log-message.js"
-import { ExampleOptions } from "../../types.js"
+import { ExampleOptions, Plugin } from "../../types.js"
 
 const slugify = slugifyType.default
 
@@ -58,10 +58,10 @@ export function createExample({
     "npx create-medusa-app@latest",
     projectName,
     `--directory-path ${basePath}/${example}`,
-    `--with-nextjs-starter ${withStorefront}`,
+    `--with-nextjs-starter ${withStorefront ? "true" : "false"}`,
     `${repoUrl ? `--repo-url ${repoUrl}` : ""}`,
-    `${verbose ? `--verbose` : ""}`,
-    `${skipDb ? `--skip-db` : ""}`
+    `${verbose ? "--verbose" : ""}`,
+    `${skipDb ? "--skip-db" : ""}`
   ].join(" "), {
     stdio: "inherit",
   })
@@ -74,14 +74,14 @@ export function createExample({
 
 function patchPackageJson(
   examplePath: string,
-  plugin: string,
+  plugin: Plugin,
 ) {
   const packageJsonPath = path.join(examplePath, "package.json")
   const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf-8"))
 
   // Add local dependency to medusa/package.json
   packageJson.dependencies = packageJson.dependencies || {}
-  packageJson.dependencies[plugin] = `file:../../../packages/${plugin}`
+  packageJson.dependencies[plugin.fullName] = `file:../../../packages/${plugin.fullName}`
 
   writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2))
 }

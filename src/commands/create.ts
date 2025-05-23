@@ -1,4 +1,3 @@
-import { execSync } from "child_process"
 import path from "path"
 
 import logMessage from "../utils/log-message.js"
@@ -6,12 +5,12 @@ import { Options } from "../types.js"
 import { 
   createPlugin,
   createExample,
-  createRootPackageJson
+  createPackageJson,
+  createReadme
 } from "../utils/creator/index.js"
 
 export default async function createDirectoryStructure({
-  monorepo,
-  scope = "",
+  repo,
   plugin,
   example,
   directoryPath,
@@ -21,7 +20,7 @@ export default async function createDirectoryStructure({
   verbose = false,
   skipExampleDb = false
 }: Options) {
-  if (!monorepo) {
+  if (!repo) {
     return logMessage({
       message: "The 'monorepo' option must be provided.",
       type: "error",
@@ -40,28 +39,26 @@ export default async function createDirectoryStructure({
     })
   }
 
-  const basePath = directoryPath ? path.join(directoryPath, monorepo) : monorepo
+  const basePath = directoryPath ? path.join(directoryPath, repo) : repo
   const basePluginPath = path.join(basePath, "packages")
   const baseExamplePath = path.join(basePath, "examples")
-  const pluginPath = path.join(basePluginPath, plugin)
-  const examplePath = path.join(baseExamplePath, example)
+  const relativePluginPath = path.join("packages", plugin.fullName)
+  const relativeExamplePath = path.join("examples", example)
 
   logMessage({
-    message: `/ Creating monorepo in the ${basePath} directory...`,
+    message: `/ Creating plugin monorepo in the ${basePath} directory...`,
     type: "info"
   })
 
-  const pluginName = scope ? `${scope}/${plugin}` : plugin
-
   createPlugin({
-    plugin: pluginName,
+    plugin: plugin,
     basePath: basePluginPath,
     repoUrl: pluginRepoUrl,
     verbose
   })
 
   createExample({
-    plugin: pluginName,
+    plugin: plugin,
     example,
     basePath: baseExamplePath,
     withStorefront,
@@ -70,16 +67,22 @@ export default async function createDirectoryStructure({
     skipDb: skipExampleDb
   })
 
-  createRootPackageJson({
+  createPackageJson({
     basePath,
-    monorepo,
-    pluginPath,
-    examplePath,
+    repo,
+    pluginPath: relativePluginPath,
+    examplePath: relativeExamplePath,
     withStorefront
   })
 
+  createReadme({
+    basePath,
+    repo,
+    plugin
+  })
+
   logMessage({
-    message: "✔ Monorepo created!",
+    message: "✔ Plugin monorepo created!",
     type: "success"
   })
 }

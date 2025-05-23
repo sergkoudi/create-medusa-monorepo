@@ -1,7 +1,7 @@
 export type Options = {
-  monorepo?: string
+  repo?: string
   scope?: string
-  plugin?: string
+  plugin?: Plugin
   example?: string
   directoryPath?: string
   withStorefront?: boolean
@@ -11,15 +11,21 @@ export type Options = {
   skipExampleDb?: boolean
 }
 
+export type Plugin = {
+  scope?: string
+  name: string
+  fullName: string
+}
+
 export type PluginOptions = {
-  plugin: string
+  plugin: Plugin
   basePath: string
   repoUrl?: string
   verbose?: boolean
 }
 
 export type ExampleOptions = {
-  plugin: string
+  plugin: Plugin
   example: string
   basePath: string
   withStorefront: boolean
@@ -29,9 +35,15 @@ export type ExampleOptions = {
 }
 
 export type PackageOptions = {
-  basePath: string,
-  monorepo: string,
-  pluginPath: string,
-  examplePath: string,
+  basePath: string
+  repo: string
+  pluginPath: string
+  examplePath: string
   withStorefront: boolean
+}
+
+export type ReadmeOptions = {
+  basePath: string
+  repo: string
+  plugin: Plugin
 }

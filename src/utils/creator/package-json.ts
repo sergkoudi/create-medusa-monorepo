@@ -1,9 +1,9 @@
 import { writeFileSync } from "fs"
 import { PackageOptions } from "../../types.js"
 
-export function createRootPackageJson({
+export function createPackageJson({
   basePath,
-  monorepo,
+  repo,
   pluginPath,
   examplePath,
   withStorefront
@@ -14,7 +14,7 @@ export function createRootPackageJson({
   if (withStorefront) workspaces.push(`${examplePath}/medusa-storefront`)
 
   const rootPackageJson = {
-    name: monorepo,
+    name: repo,
     private: true,
     version: "0.0.0",
     workspaces,

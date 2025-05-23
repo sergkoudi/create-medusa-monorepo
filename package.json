@@ -1,7 +1,7 @@
 {
-  "name": "create-medusa-monorepo",
-  "version": "0.1.3",
-  "description": "CLI tool to scaffold Medusa monorepo with plugins and examples",
+  "name": "create-medusa-plugin",
+  "version": "0.2.0",
+  "description": "CLI tool to scaffold a Medusa plugin and example projects in a ready-to-develop monorepo structure",
   "exports": "./dist/index.js",
   "type": "module",
   "bin": "./dist/index.js",
@@ -10,7 +10,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/sergkoudi/create-medusa-monorepo.git"
+    "url": "https://github.com/sergkoudi/create-medusa-plugin.git"
   },
   "scripts": {
     "dev": "node --loader ts-node/esm src/index.ts",
