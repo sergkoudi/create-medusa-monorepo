@@ -1,0 +1,15 @@
+{
+  "name": "create-medusa-monorepo",
+  "version": "0.2.0",
+  "description": "CLI tool to scaffold a Medusa plugin and example projects in a ready-to-develop monorepo structure",
+  "keywords": [
+    "medusa",
+    "medusa-v2",
+    "medusa-plugin",
+    "medusa-monorepo",
+    "create-medusa-app"
+  ],
+  "author": "Sergei Kudinov",
+  "license": "MIT",
+  "packageManager": "yarn@4.5.2"
+}
