@@ -1,7 +1,6 @@
 {
   "name": "create-medusa-monorepo",
-  "version": "0.2.0",
-  "description": "CLI tool to scaffold a Medusa plugin and example projects in a ready-to-develop monorepo structure",
+  "version": "0.2.6",
   "keywords": [
     "medusa",
     "medusa-v2",
